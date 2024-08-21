@@ -8,12 +8,9 @@ public class Analyzer {
             BufferedWriter writer = new BufferedWriter(new FileWriter("data/integers.txt"))) {
            while (reader.ready()) {
                writer.write(reader.readLine());
-               writer.write(System.lineSeparator());
            }
        } catch (IOException e) {
            e.printStackTrace();
        }
-
-
     }
 }
