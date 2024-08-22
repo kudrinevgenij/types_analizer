@@ -2,7 +2,7 @@ package ru.kudrinevgeniy;
 
 public class IntegerParser {
     public static DataType parse(String line) {
-        DataType type = DataType.STRING;
+        DataType type = null;
         try {
             Integer.parseInt(line);
             type = DataType.INTEGER;

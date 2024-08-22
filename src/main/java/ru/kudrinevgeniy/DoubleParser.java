@@ -2,7 +2,7 @@ package ru.kudrinevgeniy;
 
 public class DoubleParser {
     public static DataType parse(String line) {
-        DataType type = DataType.STRING;
+        DataType type = null;
         try {
             Double.parseDouble(line);
             type = DataType.DOUBLE;
