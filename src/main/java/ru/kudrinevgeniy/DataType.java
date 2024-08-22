@@ -1,6 +1,6 @@
 package ru.kudrinevgeniy;
 
-public enum DataTypes {
+public enum DataType {
     INTEGER,
     DOUBLE,
     STRING;
