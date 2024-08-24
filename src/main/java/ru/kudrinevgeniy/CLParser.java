@@ -9,45 +9,55 @@ public class CLParser {
     private final String[] args;
     private boolean addMode = false;
     private boolean fullStatistics = false;
-    private List<String> resultPaths;
-    private String prefix = "";
+    private boolean shortStatistics = false;
+    private String resultPath;
+    private String prefix;
     private List<String> inputFiles = new ArrayList<>();
-    boolean isParsing = true;
 
     public CLParser(String[] args) {
         this.args = args;
     }
-
+    public boolean hasResultPath() {
+        return !resultPath.isEmpty();
+    }
     public boolean isAddMode() {
         return addMode;
     }
-
-    public boolean isFullStatistics() {
-        return fullStatistics;
+    public boolean isShortStatistic() {
+        return shortStatistic;
     }
-
+    public boolean isFullStatistic() {
+        return fullStatistic;
+    }
+    public boolean hasPrefix() {
+        return prefix != null;
+    }
     public String getPrefix() {
         return prefix;
     }
-
-    public boolean hasPrefix() {
-        return !prefix.isEmpty();
+    public String getResultPath() {
+        return resultPath;
     }
-
     public List<String> getInputFiles() {
         return inputFiles;
     }
 
-    public void parse() {
+    public boolean parse() {
         List<String> list = (List.of(args));
         Iterator<String> iterator = list.iterator();
         while (iterator.hasNext()) {
             String arg = iterator.next();
             if ("-f".equals(arg)) {
                 fullStatistics = true;
+            } else if ("-s".equals(arg)) {
+                shortStatistics = true;
             }
             if ("-a".equals(arg)) {
                 addMode = true;
+            }
+            if ("-o".equals(arg)) {
+                resultPath = iterator.next();
+                iterator.next();
             }
             if ("-p".equals(arg)) {
                 prefix = iterator.next();
@@ -56,10 +66,11 @@ public class CLParser {
                 inputFiles.add(arg);
             }
         }
-        checkIsParsing();
+        return checkIsParsing();
     }
 
-    void checkIsParsing() {
+    boolean checkIsParsing() {
+        boolean isParsing = true;
         if (inputFiles.isEmpty()) {
             System.out.println("Командная строка неверна, нет входных данных");
             isParsing = false;
@@ -70,5 +81,6 @@ public class CLParser {
             System.out.println("Пропущен префикс выходных файлов");
             isParsing = false;
         }
+        return isParsing;
     }
 }
