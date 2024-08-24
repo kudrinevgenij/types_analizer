@@ -38,22 +38,22 @@ class CLParserTest {
         String[] args = new String[] {"-p", "test_"};
         CLParser parser = new CLParser(args);
         parser.parse();
-        assertThat(parser.getPrefix()).isEqualTo("test_");
+        assertThat(parser.hasPrefix()).isTrue();
+    }
+
+    @Test
+    @DisplayName("Args contain the -p flag but no prefix")
+    public void whenFlagPButNoPrefix() {
+        String[] args = new String[] {"-p", "test.txt"};
+        CLParser parser = new CLParser(args);
+        parser.parse();
+        assertThat(parser.hasPrefix()).isFalse();
     }
 
     @Test
     @DisplayName("Args no contains input files names")
     public void whenNoInputFiles() {
         String[] args = new String[] {"-s", "-a", "-p", "test_"};
-        CLParser parser = new CLParser(args);
-        parser.parse();
-        assertThat(parser.isPassed).isFalse();
-    }
-
-    @Test
-    @DisplayName("Args contain the -p flag and prefix is missing")
-    public void whenPrefixIsMissing() {
-        String[] args = new String[] {"-p", "input.txt"};
         CLParser parser = new CLParser(args);
         parser.parse();
         assertThat(parser.isPassed).isFalse();

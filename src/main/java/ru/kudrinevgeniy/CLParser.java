@@ -26,8 +26,9 @@ public class CLParser {
         return fullStatistics;
     }
 
-    public String getPrefix() {
-        return prefix;
+    public boolean hasPrefix() {
+
+        return !prefix.isEmpty();
     }
 
     public List<String> getInputFiles() {
@@ -62,6 +63,7 @@ public class CLParser {
         }
 
         if (prefix.contains(".txt")) {
+            prefix = "";
             System.out.println("Пропущен префикс выходных файлов");
             isPassed = false;
         }
