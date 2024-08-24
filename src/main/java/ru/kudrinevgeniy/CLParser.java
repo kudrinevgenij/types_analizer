@@ -9,9 +9,9 @@ public class CLParser {
     private final String[] args;
     boolean addMode = false;
     boolean fullStatistics = false;
-    List<String> resultPaths = new ArrayList<>();
+    List<String> resultPaths;
     String prefix = "";
-    List<String> inputFiles = new ArrayList<>();
+    List<String> inputFiles;
 
     public CLParser(String[] args) {
         this.args = args;
@@ -19,6 +19,7 @@ public class CLParser {
 
     public void parse() {
         List<String> list = (List.of(args));
+        inputFiles = new ArrayList<>();
         Iterator<String> iterator = list.iterator();
         while (iterator.hasNext()) {
             String arg = iterator.next();

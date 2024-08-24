@@ -13,4 +13,11 @@ class CLParserTest {
         assertThat(parser.inputFiles.get(0)).isEqualTo("input.txt");
     }
 
+    @Test
+    public void whenNoInputFiles() {
+        String[] args = new String[] {"-s", "-a", "-p", "test_"};
+        CLParser parser = new CLParser(args);
+        parser.parse();
+        assertThat(parser.inputFiles.size()).isEqualTo(0);
+    }
 }
