@@ -51,8 +51,8 @@ public class CLParser {
             if (arg.contains(".txt")) {
                 inputFiles.add(arg);
             }
-            checkIsPassing();
         }
+        checkIsPassing();
     }
 
     void checkIsPassing() {

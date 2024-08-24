@@ -7,6 +7,7 @@ import static org.assertj.core.api.Assertions.*;
 
 class CLParserTest {
     @Test
+    @DisplayName("Args is valid")
     public void whenAllIsNormal() {
         String[] args = new String[] {"-s", "-a", "-p", "test_", "input.txt"};
         CLParser parser = new CLParser(args);
@@ -15,16 +16,16 @@ class CLParserTest {
     }
 
     @Test
-        @DisplayName("Args contain the -a flag")
-        public void whenFlagA() {
+    @DisplayName("Args contain the -a flag")
+    public void whenFlagA() {
         String[] args = new String[] {"-a"};
         CLParser parser = new CLParser(args);
         parser.parse();
         assertThat(parser.isAddMode()).isTrue();
     }
     @Test
-        @DisplayName("Args contain the -f flag")
-        public void whenFlagF() {
+    @DisplayName("Args contain the -f flag")
+    public void whenFlagF() {
         String[] args = new String[] {"-f"};
         CLParser parser = new CLParser(args);
         parser.parse();
@@ -32,8 +33,8 @@ class CLParserTest {
     }
 
     @Test
-        @DisplayName("Args contain the -p flag")
-        public void whenFlagP() {
+    @DisplayName("Args contain the -p flag")
+    public void whenFlagP() {
         String[] args = new String[] {"-p", "test_"};
         CLParser parser = new CLParser(args);
         parser.parse();
@@ -41,8 +42,17 @@ class CLParserTest {
     }
 
     @Test
-        @DisplayName("Args contain the -p flag and prefix is missing")
-        public void whenPrefixIsMissing() {
+    @DisplayName("Args no contains input files names")
+    public void whenNoInputFiles() {
+        String[] args = new String[] {"-s", "-a", "-p", "test_"};
+        CLParser parser = new CLParser(args);
+        parser.parse();
+        assertThat(parser.isPassed).isFalse();
+    }
+
+    @Test
+    @DisplayName("Args contain the -p flag and prefix is missing")
+    public void whenPrefixIsMissing() {
         String[] args = new String[] {"-p", "input.txt"};
         CLParser parser = new CLParser(args);
         parser.parse();
