@@ -12,7 +12,7 @@ public class CLParser {
     private List<String> resultPaths;
     private String prefix = "";
     private List<String> inputFiles = new ArrayList<>();
-    boolean isPassed = true;
+    boolean isParsing = true;
 
     public CLParser(String[] args) {
         this.args = args;
@@ -53,19 +53,19 @@ public class CLParser {
                 inputFiles.add(arg);
             }
         }
-        checkIsPassing();
+        checkIsParsing();
     }
 
-    void checkIsPassing() {
+    void checkIsParsing() {
         if (inputFiles.isEmpty()) {
             System.out.println("Командная строка неверна, нет входных данных");
-            isPassed = false;
+            isParsing = false;
         }
 
         if (prefix.contains(".txt")) {
             prefix = "";
             System.out.println("Пропущен префикс выходных файлов");
-            isPassed = false;
+            isParsing = false;
         }
     }
 }
