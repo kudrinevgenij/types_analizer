@@ -39,9 +39,9 @@ public class Analyzer {
 
     public static void main(String[] args) {
         CLParser parser = new CLParser(args);
-        try (var byInteger = new PrintWriter(new BufferedWriter(new FileWriter(parser.prefix + "integers.txt")));
-             var byDouble = new PrintWriter(new BufferedWriter(new FileWriter(parser.prefix + "floats.txt")));
-             var byString = new PrintWriter(new BufferedWriter(new FileWriter(parser.prefix + "strings.txt")))) {
+        try (var byInteger = new PrintWriter(new BufferedWriter(new FileWriter("integers.txt")));
+             var byDouble = new PrintWriter(new BufferedWriter(new FileWriter("floats.txt")));
+             var byString = new PrintWriter(new BufferedWriter(new FileWriter("strings.txt")))) {
             new Analyzer(
                     parser,
                     List.of(new ReceiveByInteger(byInteger),

@@ -7,14 +7,13 @@ import java.util.NoSuchElementException;
 
 public class CLParser {
     private final String[] args;
-    boolean addMode = false;
-    boolean fullStatistics = false;
+    private boolean addMode = false;
+    private boolean fullStatistics = false;
     List<String> resultPaths;
-    String prefix = "";
+    private String prefix = "";
     List<String> inputFiles;
 
     public CLParser(String[] args) {
-
         this.args = args;
     }
 
