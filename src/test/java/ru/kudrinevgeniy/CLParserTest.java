@@ -23,11 +23,20 @@ class CLParserTest {
         assertThat(parser.isAddMode()).isTrue();
     }
     @Test
-    @DisplayName("Args contain the -a flag")
-    public void whenFlagF() {
+        @DisplayName("Args contain the -f flag")
+        public void whenFlagF() {
         String[] args = new String[] {"-f"};
         CLParser parser = new CLParser(args);
         parser.parse();
         assertThat(parser.isFullStatistics()).isTrue();
+    }
+
+    @Test
+        @DisplayName("Args contain the -p flag")
+        public void whenFlagP() {
+        String[] args = new String[] {"-p", "test_"};
+        CLParser parser = new CLParser(args);
+        parser.parse();
+        assertThat(parser.getPrefix()).isEqualTo("test_");
     }
 }

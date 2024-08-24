@@ -26,6 +26,10 @@ public class CLParser {
         return fullStatistics;
     }
 
+    public String getPrefix() {
+        return prefix;
+    }
+
     public void parse() {
         List<String> list = (List.of(args));
         inputFiles = new ArrayList<>();
