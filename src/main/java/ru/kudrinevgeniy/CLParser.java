@@ -1,6 +1,9 @@
 package ru.kudrinevgeniy;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class CLParser {
     private final String[] args;
@@ -15,18 +18,21 @@ public class CLParser {
     }
 
     public void parseSwitch(String[] args) {
-        for (int i = 0; i < args.length; i++) {
-            if ("-f".equals(args[i])) {
+        List<String> list = (List.of(args));
+        Iterator<String> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            String arg = iterator.next();
+            if ("-f".equals(arg)) {
                 fullStatistics = true;
             }
-            if ("-a".equals(args[i])) {
+            if ("-a".equals(arg)) {
                 addMode = true;
             }
-            if (args[i].contains(".txt")) {
-                inputFiles.add(args[i]);
+            if ("-p".equals(arg)) {
+                prefix = iterator.next();
             }
-            if ("-p".equals(args[i]) && i < args.length - 1) {
-                prefix = args[i + 1];
+            if (arg.contains(".txt")) {
+                inputFiles.add(arg);
             }
         }
     }
