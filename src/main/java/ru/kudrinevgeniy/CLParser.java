@@ -9,7 +9,7 @@ public class CLParser {
     private final String[] args;
     private boolean addMode = false;
     private boolean fullStatistics = false;
-    List<String> resultPaths;
+    private List<String> resultPaths;
     private String prefix = "";
     private List<String> inputFiles = new ArrayList<>();
     boolean isPassed = true;
