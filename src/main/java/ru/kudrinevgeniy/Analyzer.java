@@ -23,7 +23,7 @@ public class Analyzer {
     }
 
     public void load() {
-        try (var input = new BufferedReader(new FileReader(parser.inputFiles.get(0)))) {
+        try (var input = new BufferedReader(new FileReader(parser.getInputFiles().get(0)))) {
             input.lines()
                     .map(detect::of)
                     .forEach(data -> receiveByTypes

@@ -11,7 +11,7 @@ class CLParserTest {
         String[] args = new String[] {"-s", "-a", "-p", "test_", "input.txt"};
         CLParser parser = new CLParser(args);
         parser.parse();
-        assertThat(parser.inputFiles.get(0)).isEqualTo("input.txt");
+        assertThat(parser.getInputFiles().get(0)).isEqualTo("input.txt");
     }
 
     @Test
@@ -38,5 +38,14 @@ class CLParserTest {
         CLParser parser = new CLParser(args);
         parser.parse();
         assertThat(parser.getPrefix()).isEqualTo("test_");
+    }
+
+    @Test
+        @DisplayName("Args contain the -p flag and prefix is missing")
+        public void whenPrefixIsMissing() {
+        String[] args = new String[] {"-p", "input.txt"};
+        CLParser parser = new CLParser(args);
+        parser.parse();
+        assertThat(parser.isPassed).isFalse();
     }
 }

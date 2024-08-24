@@ -11,7 +11,8 @@ public class CLParser {
     private boolean fullStatistics = false;
     List<String> resultPaths;
     private String prefix = "";
-    List<String> inputFiles;
+    private List<String> inputFiles = new ArrayList<>();
+    boolean isPassed = true;
 
     public CLParser(String[] args) {
         this.args = args;
@@ -29,9 +30,12 @@ public class CLParser {
         return prefix;
     }
 
+    public List<String> getInputFiles() {
+        return inputFiles;
+    }
+
     public void parse() {
         List<String> list = (List.of(args));
-        inputFiles = new ArrayList<>();
         Iterator<String> iterator = list.iterator();
         while (iterator.hasNext()) {
             String arg = iterator.next();
@@ -47,13 +51,19 @@ public class CLParser {
             if (arg.contains(".txt")) {
                 inputFiles.add(arg);
             }
-            checkParsing();
+            checkIsPassing();
         }
     }
 
-    void checkParsing() {
+    void checkIsPassing() {
         if (inputFiles.isEmpty()) {
             System.out.println("Командная строка неверна, нет входных данных");
+            isPassed = false;
+        }
+
+        if (prefix.contains(".txt")) {
+            System.out.println("Пропущен префикс выходных файлов");
+            isPassed = false;
         }
     }
 }
