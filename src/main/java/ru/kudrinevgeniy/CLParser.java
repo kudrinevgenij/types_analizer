@@ -26,8 +26,11 @@ public class CLParser {
         return fullStatistics;
     }
 
-    public boolean hasPrefix() {
+    public String getPrefix() {
+        return prefix;
+    }
 
+    public boolean hasPrefix() {
         return !prefix.isEmpty();
     }
 
