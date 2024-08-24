@@ -56,6 +56,6 @@ class CLParserTest {
         String[] args = new String[] {"-s", "-a", "-p", "test_"};
         CLParser parser = new CLParser(args);
         parser.parse();
-        assertThat(parser.isPassed).isFalse();
+        assertThat(parser.isParsing).isFalse();
     }
 }
