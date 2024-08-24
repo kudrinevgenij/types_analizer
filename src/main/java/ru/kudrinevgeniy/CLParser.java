@@ -9,15 +9,15 @@ public class CLParser {
     private final String[] args;
     boolean addMode = false;
     boolean fullStatistics = false;
-    List<String> resultPaths;
+    List<String> resultPaths = new ArrayList<>();
     String prefix = "";
-    List<String> inputFiles;
+    List<String> inputFiles = new ArrayList<>();
 
     public CLParser(String[] args) {
         this.args = args;
     }
 
-    public void parse(String[] args) {
+    public void parse() {
         List<String> list = (List.of(args));
         Iterator<String> iterator = list.iterator();
         while (iterator.hasNext()) {
