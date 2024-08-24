@@ -1,5 +1,6 @@
 package ru.kudrinevgeniy;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -14,10 +15,19 @@ class CLParserTest {
     }
 
     @Test
-    public void whenNoInputFiles() {
-        String[] args = new String[] {"-s", "-a", "-p", "test_"};
+        @DisplayName("Args contain the -a flag")
+        public void whenFlagA() {
+        String[] args = new String[] {"-a"};
         CLParser parser = new CLParser(args);
         parser.parse();
-        assertThat(parser.inputFiles.size()).isEqualTo(0);
+        assertThat(parser.isAddMode()).isTrue();
+    }
+    @Test
+    @DisplayName("Args contain the -a flag")
+    public void whenFlagF() {
+        String[] args = new String[] {"-f"};
+        CLParser parser = new CLParser(args);
+        parser.parse();
+        assertThat(parser.isFullStatistics()).isTrue();
     }
 }

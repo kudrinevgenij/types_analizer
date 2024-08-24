@@ -14,7 +14,16 @@ public class CLParser {
     List<String> inputFiles;
 
     public CLParser(String[] args) {
+
         this.args = args;
+    }
+
+    public boolean isAddMode() {
+        return addMode;
+    }
+
+    public boolean isFullStatistics() {
+        return fullStatistics;
     }
 
     public void parse() {
