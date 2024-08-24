@@ -17,7 +17,7 @@ public class CLParser {
         this.args = args;
     }
 
-    public void parseSwitch(String[] args) {
+    public void parse(String[] args) {
         List<String> list = (List.of(args));
         Iterator<String> iterator = list.iterator();
         while (iterator.hasNext()) {
