@@ -1,30 +1,33 @@
 package ru.kudrinevgeniy;
 
+import java.util.List;
+
 public class CLParser {
     private final String[] args;
     boolean addMode = false;
     boolean fullStatistics = false;
-    String resultPaths;
-    String prefix;
-    String[] inputFiles;
+    List<String> resultPaths;
+    String prefix = "";
+    List<String> inputFiles;
 
     public CLParser(String[] args) {
         this.args = args;
     }
 
-    public void parse(String[] args) {
-        if ("-f".equals(args[0])) {
-            fullStatistics = true;
+    public void parseSwitch(String[] args) {
+        for (int i = 0; i < args.length; i++) {
+            if ("-f".equals(args[i])) {
+                fullStatistics = true;
+            }
+            if ("-a".equals(args[i])) {
+                addMode = true;
+            }
+            if (args[i].contains(".txt")) {
+                inputFiles.add(args[i]);
+            }
+            if ("-p".equals(args[i]) && i < args.length - 1) {
+                prefix = args[i + 1];
+            }
         }
-        if ("-a".equals(args[1])) {
-            addMode = true;
-        }
-        if ("-p".equals(args[2])) {
-            prefix = args[3];
-        }
-    }
-
-    public String inputPath() {
-        return "data/input.txt";
     }
 }

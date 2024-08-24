@@ -23,7 +23,7 @@ public class Analyzer {
     }
 
     public void load() {
-        try (var input = new BufferedReader(new FileReader(parser.inputPath()))) {
+        try (var input = new BufferedReader(new FileReader(parser.inputFiles.get(0)))) {
             input.lines()
                     .map(detect::of)
                     .forEach(data -> receiveByTypes
@@ -38,11 +38,12 @@ public class Analyzer {
     }
 
     public static void main(String[] args) {
-        try (var byInteger = new PrintWriter(new BufferedWriter(new FileWriter("data/integer.out")));
-             var byDouble = new PrintWriter(new BufferedWriter(new FileWriter("data/double.out")));
-             var byString = new PrintWriter(new BufferedWriter(new FileWriter("data/string.out")))) {
+        CLParser parser = new CLParser(args);
+        try (var byInteger = new PrintWriter(new BufferedWriter(new FileWriter(parser.prefix + "integers.out")));
+             var byDouble = new PrintWriter(new BufferedWriter(new FileWriter(parser.prefix + "floats.out")));
+             var byString = new PrintWriter(new BufferedWriter(new FileWriter(parser.prefix + "strings.txt")))) {
             new Analyzer(
-                    new CLParser(args),
+                    parser,
                     List.of(new ReceiveByInteger(byInteger),
                             new ReceiveByDouble(byDouble),
                             new ReceiveByString(byString)),
