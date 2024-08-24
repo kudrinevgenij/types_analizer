@@ -35,6 +35,13 @@ public class CLParser {
             if (arg.contains(".txt")) {
                 inputFiles.add(arg);
             }
+            checkParsing();
+        }
+    }
+
+    void checkParsing() {
+        if (inputFiles.isEmpty()) {
+            System.out.println("Командная строка неверна, нет входных данных");
         }
     }
 }
