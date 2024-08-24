@@ -1,15 +1,23 @@
 package ru.kudrinevgeniy;
 
+import ru.kudrinevgeniy.detect.DetectBy;
+
+import java.util.List;
+
 public class TypeDetect {
-    public static DataType of(String line) {
-        DataType type = null;
-        type = IntegerParser.parse(line);
-        if (type == null) {
-            type = DoubleParser.parse(line);
+    private final List<DetectBy> detects;
+
+    public TypeDetect(List<DetectBy> detects) {
+        this.detects = detects;
+    }
+
+    public DataType of(String line) {
+        for (DetectBy detect : detects) {
+                var result = detect.get(line);
+            if (result.isPresent()) {
+                return result.get();
+            }
         }
-        if (type == null) {
-            type = DataType.STRING;
-        }
-        return type;
+        return new DataType(DataType.Types.STRING, line);
     }
 }

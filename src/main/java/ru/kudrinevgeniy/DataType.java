@@ -1,7 +1,9 @@
 package ru.kudrinevgeniy;
 
-public enum DataType {
-    INTEGER,
-    DOUBLE,
-    STRING;
+public record DataType(Types type, String value) {
+    public enum Types {
+        INTEGER,
+        DOUBLE,
+        STRING;
+    }
 }
