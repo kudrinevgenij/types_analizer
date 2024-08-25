@@ -61,6 +61,9 @@ public class CLParser {
             }
             if ("-p".equals(arg)) {
                 prefix = iterator.next();
+                if (prefix.contains(".txt")) {
+                    prefix = null;
+                }
             }
             if (arg.contains(".txt")) {
                 inputFiles.add(arg);
