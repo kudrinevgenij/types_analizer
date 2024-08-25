@@ -7,8 +7,12 @@ import ru.kudrinevgeniy.receive.ReceiveByDouble;
 import ru.kudrinevgeniy.receive.ReceiveByInteger;
 import ru.kudrinevgeniy.receive.ReceiveByString;
 import ru.kudrinevgeniy.receive.ReceiveByType;
+import ru.kudrinevgeniy.statistic.FullStatistics;
+import ru.kudrinevgeniy.statistic.ShortStatistics;
 
 import java.io.*;
+import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Analyzer {
@@ -22,39 +26,72 @@ public class Analyzer {
         this.detect = detect;
     }
 
-    public void load() {
-        try (var input = new BufferedReader(new FileReader(parser.getInputFiles().get(0)))) {
-            input.lines()
-                    .map(detect::of)
-                    .forEach(data -> receiveByTypes
-                            .forEach(receiveByType -> {
-                                if (receiveByType.isGoodFor(data)) {
-                                    receiveByType.proceed(data);
-                                }
-                            }));
-        } catch (IOException e) {
-            e.printStackTrace();
+    public Analyzer init() {
+        var it = receiveByTypes.iterator();
+        while (it.hasNext()) {
+            boolean success = it.next().init();
+            if (!success) {
+                it.remove();
+            }
+        }
+        return this;
+    }
+
+    public Analyzer load(List<String> files) {
+        for (String file : files) {
+            var source = new File(file);
+            if (!source.exists()) {
+                System.out.println("File doesn't exit: " + source.getAbsolutePath());
+                continue;
+            }
+            try (var input = new BufferedReader(new FileReader(source))) {
+                input.lines()
+                        .map(detect::of)
+                        .forEach(data -> receiveByTypes
+                                .forEach(receiveByType -> {
+                                    if (receiveByType.isGoodFor(data)) {
+                                        receiveByType.proceed(data);
+                                    }
+                                }));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return this;
+    }
+
+    public void cleanResources() {
+        for (ReceiveByType receiveByType : receiveByTypes) {
+            receiveByType.destroy();
         }
     }
 
     public static void main(String[] args) {
-        CLParser parser = new CLParser(args);
-        try (var byInteger = new PrintWriter(new BufferedWriter(new FileWriter("integers.txt")));
-             var byDouble = new PrintWriter(new BufferedWriter(new FileWriter("floats.txt")));
-             var byString = new PrintWriter(new BufferedWriter(new FileWriter("strings.txt")))) {
-            new Analyzer(
-                    parser,
-                    List.of(new ReceiveByInteger(byInteger),
-                            new ReceiveByDouble(byDouble),
-                            new ReceiveByString(byString)),
-                    new TypeDetect(
-                            List.of(new DetectByInteger(),
-                                    new DetectByDouble(),
-                                    new DetectByString())
-                    )
-            ).load();
-        } catch (Exception e) {
-            e.printStackTrace();
+        var parser = new CLParser(args);
+        if (!parser.description().isEmpty()) {
+            System.out.println("Invalid args:");
+            for (String message : parser.description()) {
+                System.out.println(message);
+            }
+            return;
         }
+        var intStat = parser.isShortStatistic() ? new ShortStatistics() : new FullStatistics();
+        var doubleStat = parser.isShortStatistic() ? new ShortStatistics() : new FullStatistics();
+        var stringStat = parser.isShortStatistic() ? new ShortStatistics() : new FullStatistics();
+        new Analyzer(
+                parser,
+                new ArrayList<>(
+                        List.of(new ReceiveByInteger(parser.getResultPath(), parser.getPrefix(), intStat),
+                        new ReceiveByDouble(parser.getResultPath(), parser.getPrefix(), doubleStat),
+                        new ReceiveByString(parser.getResultPath(), parser.getPrefix(), stringStat
+                        ))),
+                new TypeDetect(
+                        List.of(new DetectByInteger(),
+                                new DetectByDouble(),
+                                new DetectByString())
+                )
+        ).init()
+                .load(parser.getInputFiles())
+                .cleanResources();
     }
 }
