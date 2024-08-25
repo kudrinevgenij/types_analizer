@@ -76,15 +76,15 @@ class CLParserTest {
     public void whenNoInputFiles() {
         String[] args = new String[]{"-s", "-a", "-p", "test_"};
         CLParser parser = new CLParser(args);
-        assertThat(parser.parse(), is(false));
-        assertThat(parser.description(), equalTo(List.of("Don't contains input files.")));
+        assertThat(parser.parse()).isFalse();
+        assertThat(parser.description()).isEqualTo(List.of("Don't contains input files."));
     }
 
     @Test
     public void whenNonArgs() {
         CLParser parser = new CLParser(new String[]{});
-        assertThat(parser.parse(), is(false));
-        assertThat(parser.description(), equalTo(List.of(
+        assertThat(parser.parse()).isFalse();
+        assertThat(parser.description()).isEqualTo((List.of(
                 "Don't config statistic flags -s of -f.",
                 "Don't contains input files."
         )));
@@ -93,7 +93,7 @@ class CLParserTest {
     @Test
     public void whenNonArgsStatistic() {
         CLParser parser = new CLParser(new String[]{"in1.txt"});
-        assertThat(parser.parse(), is(false));
-        assertThat(parser.description(), equalTo(List.of("Don't config statistic flags -s of -f.")));
+        assertThat(parser.parse()).isFalse();
+        assertThat(parser.description()).isEqualTo(List.of("Don't config statistic flags -s of -f."));
     }
 }

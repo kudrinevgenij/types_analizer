@@ -8,11 +8,12 @@ import java.util.NoSuchElementException;
 public class CLParser {
     private final String[] args;
     private boolean addMode = false;
-    private boolean fullStatistics = false;
-    private boolean shortStatistics = false;
+    private boolean fullStatistic = false;
+    private boolean shortStatistic = false;
     private String resultPath;
     private String prefix;
     private List<String> inputFiles = new ArrayList<>();
+    private List<String> errorsDescription = new ArrayList<>();
 
     public CLParser(String[] args) {
         this.args = args;
@@ -48,16 +49,15 @@ public class CLParser {
         while (iterator.hasNext()) {
             String arg = iterator.next();
             if ("-f".equals(arg)) {
-                fullStatistics = true;
+                fullStatistic = true;
             } else if ("-s".equals(arg)) {
-                shortStatistics = true;
+                shortStatistic = true;
             }
             if ("-a".equals(arg)) {
                 addMode = true;
             }
             if ("-o".equals(arg)) {
                 resultPath = iterator.next();
-                iterator.next();
             }
             if ("-p".equals(arg)) {
                 prefix = iterator.next();
@@ -71,16 +71,18 @@ public class CLParser {
 
     boolean checkIsParsing() {
         boolean isParsing = true;
-        if (inputFiles.isEmpty()) {
-            System.out.println("Командная строка неверна, нет входных данных");
+        if (!fullStatistic && !shortStatistic) {
+            errorsDescription.add("Don't config statistic flags -s of -f.");
             isParsing = false;
         }
-
-        if (prefix.contains(".txt")) {
-            prefix = "";
-            System.out.println("Пропущен префикс выходных файлов");
+        if (inputFiles.isEmpty()) {
+            errorsDescription.add("Don't contains input files.");
             isParsing = false;
         }
         return isParsing;
+    }
+
+    List<String> description() {
+        return errorsDescription;
     }
 }
