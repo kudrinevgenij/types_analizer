@@ -1,7 +1,6 @@
 package ru.kudrinevgeniy.receive;
 
 import ru.kudrinevgeniy.DataType;
-import ru.kudrinevgeniy.Analyzer;
 import ru.kudrinevgeniy.statistic.Statistics;
 
 import java.io.*;

@@ -41,7 +41,7 @@ public class Analyzer {
         for (String file : files) {
             var source = new File(file);
             if (!source.exists()) {
-                System.out.println("File doesn't exit: " + source.getAbsolutePath());
+                System.out.println("File doesn't exist: " + source.getAbsolutePath());
                 continue;
             }
             try (var input = new BufferedReader(new FileReader(source))) {
@@ -68,6 +68,7 @@ public class Analyzer {
 
     public static void main(String[] args) {
         var parser = new CLParser(args);
+        parser.parse();
         if (!parser.description().isEmpty()) {
             System.out.println("Invalid args:");
             for (String message : parser.description()) {
