@@ -10,8 +10,8 @@ public class CLParser {
     private boolean addMode = false;
     private boolean fullStatistic = false;
     private boolean shortStatistic = false;
-    private String resultPath;
-    private String prefix;
+    private String resultPath = "";
+    private String prefix = "";
     private List<String> inputFiles = new ArrayList<>();
     private List<String> errorsDescription = new ArrayList<>();
 
@@ -31,7 +31,7 @@ public class CLParser {
         return fullStatistic;
     }
     public boolean hasPrefix() {
-        return prefix != null;
+        return !prefix.isEmpty();
     }
     public String getPrefix() {
         return prefix;
@@ -62,7 +62,7 @@ public class CLParser {
             if ("-p".equals(arg)) {
                 prefix = iterator.next();
                 if (prefix.contains(".txt")) {
-                    prefix = null;
+                    prefix = "";
                 }
             }
             if (arg.contains(".txt")) {
