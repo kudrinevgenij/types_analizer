@@ -12,7 +12,8 @@ public class ReceiveByString implements ReceiveByType {
     private PrintWriter writer;
 
     public ReceiveByString(String source, String prefix, Statistics statistics) {
-        this.source = source + FileSystems.getDefault().getSeparator() + prefix + "strings.txt";
+        String path = source + FileSystems.getDefault().getSeparator();
+        this.source = source.isEmpty() ? prefix + "strings.txt" : path + prefix + "strings.txt";
         this.statistics = statistics;
     }
 

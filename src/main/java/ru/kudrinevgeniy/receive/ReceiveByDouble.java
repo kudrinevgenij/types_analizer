@@ -1,6 +1,7 @@
 package ru.kudrinevgeniy.receive;
 
 import ru.kudrinevgeniy.DataType;
+import ru.kudrinevgeniy.Analyzer;
 import ru.kudrinevgeniy.statistic.Statistics;
 
 import java.io.*;
@@ -12,7 +13,8 @@ public class ReceiveByDouble implements ReceiveByType {
     private PrintWriter writer;
 
     public ReceiveByDouble(String source, String prefix, Statistics statistics) {
-        this.source = source + FileSystems.getDefault().getSeparator() + prefix + "doubles.txt";
+        String path = source + FileSystems.getDefault().getSeparator();
+        this.source = source.isEmpty() ? prefix + "doubles.txt" : path + prefix + "doubles.txt";
         this.statistics = statistics;
     }
 

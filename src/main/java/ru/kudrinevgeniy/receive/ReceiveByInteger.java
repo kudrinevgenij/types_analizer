@@ -12,7 +12,8 @@ public class ReceiveByInteger implements ReceiveByType {
     private PrintWriter writer;
 
     public ReceiveByInteger(String source, String prefix, Statistics statistics) {
-        this.source = source + FileSystems.getDefault().getSeparator() + prefix + "integers.txt";
+        String path = source + FileSystems.getDefault().getSeparator();
+        this.source = source.isEmpty() ? prefix + "integers.txt" : path + prefix + "integers.txt";
         this.statistics = statistics;
     }
 
