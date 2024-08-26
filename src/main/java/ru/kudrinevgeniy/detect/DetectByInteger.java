@@ -13,6 +13,6 @@ public class DetectByInteger implements DetectBy {
         } catch (NumberFormatException e) {
             data = null;
         }
-        return data == null ? Optional.empty() : Optional.of(new DataType(DataType.Types.INTEGER, value));
+        return data == null ? Optional.empty() : Optional.of(new DataType(DataType.Types.INTEGER, data));
     }
 }

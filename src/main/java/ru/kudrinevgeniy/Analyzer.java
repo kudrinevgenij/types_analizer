@@ -7,11 +7,12 @@ import ru.kudrinevgeniy.receive.ReceiveByDouble;
 import ru.kudrinevgeniy.receive.ReceiveByInteger;
 import ru.kudrinevgeniy.receive.ReceiveByString;
 import ru.kudrinevgeniy.receive.ReceiveByType;
-import ru.kudrinevgeniy.statistic.FullStatistics;
+import ru.kudrinevgeniy.statistic.FullDoubleStatistics;
+import ru.kudrinevgeniy.statistic.FullIntegerStatistics;
+import ru.kudrinevgeniy.statistic.FullStringStatistics;
 import ru.kudrinevgeniy.statistic.ShortStatistics;
 
 import java.io.*;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +45,7 @@ public class Analyzer {
                 System.out.println("File doesn't exist: " + source.getAbsolutePath());
                 continue;
             }
+            System.out.println("Analyze: " + source.getAbsolutePath());
             try (var input = new BufferedReader(new FileReader(source))) {
                 input.lines()
                         .map(detect::of)
@@ -76,9 +78,9 @@ public class Analyzer {
             }
             return;
         }
-        var intStat = parser.isShortStatistic() ? new ShortStatistics() : new FullStatistics();
-        var doubleStat = parser.isShortStatistic() ? new ShortStatistics() : new FullStatistics();
-        var stringStat = parser.isShortStatistic() ? new ShortStatistics() : new FullStatistics();
+        var intStat = parser.isShortStatistic() ? new ShortStatistics() : new FullIntegerStatistics();
+        var doubleStat = parser.isShortStatistic() ? new ShortStatistics() : new FullDoubleStatistics();
+        var stringStat = parser.isShortStatistic() ? new ShortStatistics() : new FullStringStatistics();
         new Analyzer(
                 parser,
                 new ArrayList<>(

@@ -1,8 +1,7 @@
 package ru.kudrinevgeniy.statistic;
 
-public class ShortStatistics implements Statistics {
+public class FullStringStatistics implements Statistics {
     private int size;
-
     @Override
     public void add(Object value) {
         size++;
@@ -15,6 +14,6 @@ public class ShortStatistics implements Statistics {
 
     @Override
     public boolean isEmpty() {
-        return size > 0;
+        return size == 0;
     }
 }

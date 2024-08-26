@@ -38,10 +38,13 @@ public class ReceiveByDouble implements ReceiveByType {
     @Override
     public void proceed(DataType data) {
         writer.println(data.value());
+        statistics.add(data.value());
     }
 
     @Override
     public void destroy() {
+        System.out.println("Statistic for doubles:");
+        System.out.println(statistics.info());
         try {
             if (writer != null) {
                 writer.close();

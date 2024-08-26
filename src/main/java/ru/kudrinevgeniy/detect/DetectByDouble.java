@@ -13,6 +13,6 @@ public class DetectByDouble implements DetectBy {
         } catch (NumberFormatException e) {
             data = null;
         }
-        return data == null ? Optional.empty() : Optional.of(new DataType(DataType.Types.DOUBLE, value));
+        return data == null ? Optional.empty() : Optional.of(new DataType(DataType.Types.DOUBLE, data));
     }
 }

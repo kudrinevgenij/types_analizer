@@ -38,10 +38,13 @@ public class ReceiveByString implements ReceiveByType {
     @Override
     public void proceed(DataType data) {
         writer.println(data.value());
+        statistics.add(data.value());
     }
 
     @Override
     public void destroy() {
+        System.out.println("Statistic for strings:");
+        System.out.println(statistics.info());
         try {
             if (writer != null) {
                 writer.close();
