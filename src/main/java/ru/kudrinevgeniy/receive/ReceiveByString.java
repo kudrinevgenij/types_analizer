@@ -18,10 +18,10 @@ public class ReceiveByString implements ReceiveByType {
     }
 
     @Override
-    public boolean init() {
+    public boolean init(boolean add) {
         var success = false;
         try {
-            writer = new PrintWriter(new BufferedWriter(new FileWriter(source)));
+            writer = new PrintWriter(new BufferedWriter(new FileWriter(source, add)));
             success = true;
         } catch (IOException e) {
             System.out.println("Can't init resources:" + source);

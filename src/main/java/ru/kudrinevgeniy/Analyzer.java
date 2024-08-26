@@ -30,7 +30,7 @@ public class Analyzer {
     public Analyzer init() {
         var it = receiveByTypes.iterator();
         while (it.hasNext()) {
-            boolean success = it.next().init();
+            boolean success = it.next().init(parser.isAddMode());
             if (!success) {
                 it.remove();
             }
