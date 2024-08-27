@@ -2,7 +2,7 @@ package ru.kudrinevgeniy.statistic;
 
 import java.math.BigDecimal;
 
-public class FullDoubleStatistics implements Statistics {
+public class FullDecimalStatistics implements Statistics {
     private int size;
     private BigDecimal sum = new BigDecimal(0);
 

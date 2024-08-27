@@ -6,14 +6,14 @@ import ru.kudrinevgeniy.statistic.Statistics;
 import java.io.*;
 import java.nio.file.FileSystems;
 
-public class ReceiveByDouble implements ReceiveByType {
+public class ReceiveByDecimal implements ReceiveByType {
     private final String source;
     private final Statistics statistics;
     private PrintWriter writer;
 
-    public ReceiveByDouble(String source, String prefix, Statistics statistics) {
+    public ReceiveByDecimal(String source, String prefix, Statistics statistics) {
         String path = source + FileSystems.getDefault().getSeparator();
-        this.source = source.isEmpty() ? prefix + "doubles.txt" : path + prefix + "doubles.txt";
+        this.source = source.isEmpty() ? prefix + "floats.txt" : path + prefix + "doubles.txt";
         this.statistics = statistics;
     }
 
@@ -43,7 +43,7 @@ public class ReceiveByDouble implements ReceiveByType {
 
     @Override
     public void destroy() {
-        System.out.println("Statistic for doubles:");
+        System.out.println("Statistic for floats:");
         System.out.println(statistics.info());
         try {
             if (writer != null) {

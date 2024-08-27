@@ -5,7 +5,7 @@ import ru.kudrinevgeniy.DataType;
 import java.math.BigDecimal;
 import java.util.Optional;
 
-public class DetectByDouble implements DetectBy {
+public class DetectByDecimal implements DetectBy {
     @Override
     public Optional<DataType> get(String value) {
         BigDecimal data;

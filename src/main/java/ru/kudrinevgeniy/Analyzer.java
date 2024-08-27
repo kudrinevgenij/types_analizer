@@ -1,13 +1,13 @@
 package ru.kudrinevgeniy;
 
-import ru.kudrinevgeniy.detect.DetectByDouble;
+import ru.kudrinevgeniy.detect.DetectByDecimal;
 import ru.kudrinevgeniy.detect.DetectByInteger;
 import ru.kudrinevgeniy.detect.DetectByString;
-import ru.kudrinevgeniy.receive.ReceiveByDouble;
+import ru.kudrinevgeniy.receive.ReceiveByDecimal;
 import ru.kudrinevgeniy.receive.ReceiveByInteger;
 import ru.kudrinevgeniy.receive.ReceiveByString;
 import ru.kudrinevgeniy.receive.ReceiveByType;
-import ru.kudrinevgeniy.statistic.FullDoubleStatistics;
+import ru.kudrinevgeniy.statistic.FullDecimalStatistics;
 import ru.kudrinevgeniy.statistic.FullIntegerStatistics;
 import ru.kudrinevgeniy.statistic.FullStringStatistics;
 import ru.kudrinevgeniy.statistic.ShortStatistics;
@@ -79,18 +79,18 @@ public class Analyzer {
             return;
         }
         var intStat = parser.isShortStatistic() ? new ShortStatistics() : new FullIntegerStatistics();
-        var doubleStat = parser.isShortStatistic() ? new ShortStatistics() : new FullDoubleStatistics();
+        var doubleStat = parser.isShortStatistic() ? new ShortStatistics() : new FullDecimalStatistics();
         var stringStat = parser.isShortStatistic() ? new ShortStatistics() : new FullStringStatistics();
         new Analyzer(
                 parser,
                 new ArrayList<>(
                         List.of(new ReceiveByInteger(parser.getResultPath(), parser.getPrefix(), intStat),
-                        new ReceiveByDouble(parser.getResultPath(), parser.getPrefix(), doubleStat),
+                        new ReceiveByDecimal(parser.getResultPath(), parser.getPrefix(), doubleStat),
                         new ReceiveByString(parser.getResultPath(), parser.getPrefix(), stringStat
                         ))),
                 new TypeDetect(
                         List.of(new DetectByInteger(),
-                                new DetectByDouble(),
+                                new DetectByDecimal(),
                                 new DetectByString())
                 )
         ).init()

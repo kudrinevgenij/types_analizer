@@ -1,7 +1,7 @@
 package ru.kudrinevgeniy;
 
 import org.junit.jupiter.api.Test;
-import ru.kudrinevgeniy.detect.DetectByDouble;
+import ru.kudrinevgeniy.detect.DetectByDecimal;
 import ru.kudrinevgeniy.detect.DetectByInteger;
 import ru.kudrinevgeniy.detect.DetectByString;
 
@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class TypeDetectTest {
     private TypeDetect detects = new TypeDetect(
             List.of(new DetectByInteger(),
-                    new DetectByDouble(),
+                    new DetectByDecimal(),
                     new DetectByString())
     );
 
