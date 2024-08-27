@@ -4,6 +4,9 @@ import java.math.BigDecimal;
 
 public class FullDecimalStatistics implements Statistics {
     private int size;
+    private BigDecimal min = new BigDecimal(0);
+    private BigDecimal max = new BigDecimal(0);
+    private BigDecimal average = new BigDecimal(0);
     private BigDecimal sum = new BigDecimal(0);
 
     @Override
@@ -15,8 +18,10 @@ public class FullDecimalStatistics implements Statistics {
     @Override
     public String info() {
         var out = new StringBuilder();
-        out.append("Total sum: ").append(sum).append(System.lineSeparator());
         out.append("Total size: ").append(size).append(System.lineSeparator());
+        out.append("Total sum: ").append(sum).append(System.lineSeparator());
+        out.append("Min: ").append(min).append(System.lineSeparator());
+        out.append("Max: ").append(max).append(System.lineSeparator());
         return out.toString();
     }
 
