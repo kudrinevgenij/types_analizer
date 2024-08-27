@@ -7,7 +7,7 @@ public class FullIntegerStatistics implements Statistics {
     @Override
     public void add(Object value) {
         size++;
-        sum += (Integer) value;
+        sum += (Long) value;
     }
 
     @Override

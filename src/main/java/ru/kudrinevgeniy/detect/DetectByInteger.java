@@ -2,14 +2,15 @@ package ru.kudrinevgeniy.detect;
 
 import ru.kudrinevgeniy.DataType;
 
+import java.math.BigInteger;
 import java.util.Optional;
 
 public class DetectByInteger implements DetectBy {
     @Override
     public Optional<DataType> get(String value) {
-        Integer data;
+        Long data;
         try {
-            data = Integer.valueOf(value);
+            data = Long.parseLong(value);
         } catch (NumberFormatException e) {
             data = null;
         }
