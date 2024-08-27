@@ -1,13 +1,15 @@
 package ru.kudrinevgeniy.statistic;
 
+import java.math.BigDecimal;
+
 public class FullDoubleStatistics implements Statistics {
     private int size;
-    private double sum;
+    private BigDecimal sum = new BigDecimal(0);
 
     @Override
     public void add(Object value) {
         size++;
-        sum += (Double) value;
+        sum = sum.add((BigDecimal) value);
     }
 
     @Override
@@ -20,6 +22,6 @@ public class FullDoubleStatistics implements Statistics {
 
     @Override
     public boolean isEmpty() {
-        return sum == 0;
+        return sum.equals(0);
     }
 }

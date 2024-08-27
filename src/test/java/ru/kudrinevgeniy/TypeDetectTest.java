@@ -27,7 +27,7 @@ class TypeDetectTest {
     public void whenDouble() {
         var result = detects.of("100.100");
         assertThat(result)
-                .isEqualTo(new DataType(DataType.Types.DOUBLE, "100.100"));
+                .isEqualTo(new DataType(DataType.Types.DECIMAL, "100.100"));
     }
 
     @Test

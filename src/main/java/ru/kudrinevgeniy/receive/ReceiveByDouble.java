@@ -21,7 +21,7 @@ public class ReceiveByDouble implements ReceiveByType {
     public boolean init(boolean add) {
         var success = false;
         try {
-            writer = new PrintWriter(new BufferedWriter(new FileWriter(source, add)));
+            writer = new PrintWriter(new BufferedWriter(new FileWriter(source)));
             success = true;
         } catch (IOException e) {
             System.out.println("Can't init resources:" + source);
@@ -32,7 +32,7 @@ public class ReceiveByDouble implements ReceiveByType {
 
     @Override
     public boolean isGoodFor(DataType data) {
-        return data.type() == DataType.Types.DOUBLE;
+        return data.type() == DataType.Types.DECIMAL;
     }
 
     @Override
