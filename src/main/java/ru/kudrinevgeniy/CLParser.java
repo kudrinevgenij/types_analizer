@@ -10,6 +10,7 @@ public class CLParser {
     private boolean addMode = false;
     private boolean fullStatistic = false;
     private boolean shortStatistic = false;
+    private boolean noPrefixValue = false;
     private String resultPath = "";
     private String prefix = "";
     private List<String> inputFiles = new ArrayList<>();
@@ -57,12 +58,18 @@ public class CLParser {
                 addMode = true;
             }
             if ("-o".equals(arg)) {
-                resultPath = iterator.next();
+                if (iterator.hasNext()) {
+                    resultPath = iterator.next();
+                }
             }
             if ("-p".equals(arg)) {
-                prefix = iterator.next();
+                if (iterator.hasNext()) {
+                    prefix = iterator.next();
+                }
                 if (prefix.contains(".txt")) {
+                    inputFiles.add(arg);
                     prefix = "";
+                    noPrefixValue = true;
                 }
             }
             if (arg.contains(".txt")) {
@@ -80,6 +87,10 @@ public class CLParser {
         }
         if (inputFiles.isEmpty()) {
             errorsDescription.add("Don't contains input files.");
+            isParsing = false;
+        }
+        if (noPrefixValue) {
+            errorsDescription.add("Args contain the -p flag but no prefix value.");
             isParsing = false;
         }
         return isParsing;

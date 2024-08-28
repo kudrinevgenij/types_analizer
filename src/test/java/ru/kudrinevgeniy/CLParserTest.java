@@ -45,7 +45,7 @@ class CLParserTest {
     }
 
     @Test
-    @DisplayName("Args contain the -p flag but no prefix")
+    @DisplayName("Args contain the -p flag but no prefix value")
     public void whenFlagPButNoPrefix() {
         String[] args = new String[] {"-p", "test.txt"};
         CLParser parser = new CLParser(args);
