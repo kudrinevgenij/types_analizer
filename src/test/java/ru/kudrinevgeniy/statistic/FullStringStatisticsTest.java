@@ -20,7 +20,7 @@ class FullStringStatisticsTest {
         Statistics statistics = new FullStringStatistics();
         for (String el : input) {
             statistics.add(el);
-        };
+        }
         assertThat(statistics.isEmpty()).isFalse();
         assertThat(statistics.info()).isEqualTo(
                 "Total size: 6" + System.lineSeparator()

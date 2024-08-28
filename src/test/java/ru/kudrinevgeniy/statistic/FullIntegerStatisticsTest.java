@@ -15,7 +15,7 @@ class FullIntegerStatisticsTest {
         Statistics statistics = new FullIntegerStatistics();
         for (long el : input) {
             statistics.add(el);
-        };
+        }
         assertThat(statistics.isEmpty()).isFalse();
         assertThat(statistics.info()).isEqualTo(
                 "Total size: 3" + System.lineSeparator()

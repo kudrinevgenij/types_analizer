@@ -20,7 +20,7 @@ class FullDecimalStatisticsTest {
         Statistics statistics = new FullDecimalStatistics();
         for (BigDecimal el : input) {
             statistics.add(el);
-        };
+        }
         assertThat(statistics.isEmpty()).isFalse();
         assertThat(statistics.info()).isEqualTo(
                 "Total size: 3" + System.lineSeparator()
