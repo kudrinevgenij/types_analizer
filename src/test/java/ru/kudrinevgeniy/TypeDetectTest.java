@@ -39,5 +39,4 @@ class TypeDetectTest {
         assertThat(result)
                 .isEqualTo(new DataType(DataType.Types.STRING, "100$"));
     }
-  
 }

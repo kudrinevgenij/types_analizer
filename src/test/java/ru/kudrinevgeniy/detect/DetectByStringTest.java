@@ -23,5 +23,4 @@ class DetectByStringTest {
         Optional<DataType> result = new DetectByInteger().get(input);
         assertThat(result).isEqualTo(expected);
     }
-
 }
