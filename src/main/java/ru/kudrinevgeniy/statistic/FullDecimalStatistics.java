@@ -11,8 +11,15 @@ public class FullDecimalStatistics implements Statistics {
 
     @Override
     public void add(Object value) {
+        BigDecimal decimal = (BigDecimal) value;
+        if (decimal.compareTo(min) <= 0 || min.equals(BigDecimal.valueOf(0))) {
+            min = decimal;
+        }
+        if (decimal.compareTo(max) >= 0) {
+            max = decimal;
+        }
         size++;
-        sum = sum.add((BigDecimal) value);
+        sum = sum.add(decimal);
     }
 
     @Override

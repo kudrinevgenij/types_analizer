@@ -6,6 +6,13 @@ public class FullStringStatistics implements Statistics {
     private int maxSize;
     @Override
     public void add(Object value) {
+        String string = (String) value;
+        if (string.length() < minSize || minSize == 0) {
+            minSize = string.length();
+        }
+        if (string.length() > maxSize) {
+            maxSize = string.length();
+        }
         size++;
     }
 

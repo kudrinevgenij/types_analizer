@@ -1,5 +1,7 @@
 package ru.kudrinevgeniy.statistic;
 
+import java.math.BigDecimal;
+
 public class FullIntegerStatistics implements Statistics {
     private int size;
     private long sum;
@@ -9,8 +11,15 @@ public class FullIntegerStatistics implements Statistics {
 
     @Override
     public void add(Object value) {
+        long integer = (long) value;
+        if (integer <= min || min == 0) {
+            min = integer;
+        }
+        if (integer >= max) {
+            max = integer;
+        }
         size++;
-        sum += (Long) value;
+        sum += integer;
     }
 
     @Override
