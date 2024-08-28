@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.*;
 
 class FullStringStatisticsTest {
     @Test
-    public void when3Integers() {
+    public void when3Strings() {
         List<String> input = List.of(
                 "Lorem ipsum dolor sit amet",
                 "Пример",
