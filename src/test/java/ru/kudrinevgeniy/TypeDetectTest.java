@@ -20,14 +20,14 @@ class TypeDetectTest {
     public void whenInteger() {
         var result = detects.of("100");
         assertThat(result)
-                .isEqualTo(new DataType(DataType.Types.INTEGER, "100"));
+                .isEqualTo(new DataType(DataType.Types.INTEGER, 100L));
     }
 
     @Test
     public void whenDouble() {
         var result = detects.of("100.100");
         assertThat(result)
-                .isEqualTo(new DataType(DataType.Types.DECIMAL, "100.100"));
+                .isEqualTo(new DataType(DataType.Types.DECIMAL, 100.1));
     }
 
     @Test
