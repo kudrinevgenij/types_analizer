@@ -9,9 +9,7 @@ Java 17
 5. filename.txt и т.д. Имена входных файлов. Пути файлов должны быть либо относительно jar файла либо абсолютными. Выходные файлы по умолчанию будут созданы в папке с jar файлом.
 Чтобы создать файл воспользуйтесь mvn install в корне проекта, файл будет создан в директории target.
 
-Пример: java -jar types_analyzer-1.0.jar -f -a -p test_ data/in1.txt data/in2.txt  
-
-Директория с тестовыми файлами data уже содержится в target.
+Пример: java -jar types_analyzer-1.0.jar -f -a -p test_ in1.txt in2.txt
 
 
 
