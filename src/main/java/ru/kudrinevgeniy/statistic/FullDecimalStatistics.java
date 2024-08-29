@@ -34,6 +34,6 @@ public class FullDecimalStatistics implements Statistics {
 
     @Override
     public boolean isEmpty() {
-        return sum.equals(0);
+        return size == 0;
     }
 }

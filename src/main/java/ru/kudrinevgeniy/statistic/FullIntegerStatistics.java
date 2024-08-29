@@ -34,6 +34,6 @@ public class FullIntegerStatistics implements Statistics {
 
     @Override
     public boolean isEmpty() {
-        return sum == 0;
+        return size == 0;
     }
 }
